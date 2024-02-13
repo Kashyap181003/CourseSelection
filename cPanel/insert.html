@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Insert New Course</title>
+</head>
+<body>
+  <h1>Insert New Course</h1>
+  <form action="new_course.php" method="post">
+    <table>
+      <tr>
+        <td>Course ID</td>
+        <td><input type="text" name="course_id"></td>
+      </tr>
+      <tr>
+        <td>Topic</td>
+        <td><input type="text" name="topic"></td>
+      </tr>
+      <tr>
+        <td>Number of Attendees</td>
+        <td><input type="number" name="number_of_attendees"></td>
+      </tr>
+      <tr>
+        <td>Modality</td>
+        <td>
+          <select name="modality">
+            <option value="Online">Online</option>
+            <option value="In-person">In-person</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Credits</td>
+        <td><input type="number" name="credits"></td>
+      </tr>
+      <tr>
+        <td>Feedback</td>
+        <td><textarea name="feedback"></textarea></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Insert"></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
