@@ -1,45 +1,12 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Feb 13, 2024 at 06:05 PM
--- Server version: 5.7.44
--- PHP Version: 8.1.27
+CREATE TABLE courses (
+  course_id VARCHAR(10) PRIMARY KEY,
+  topic VARCHAR(255),
+  number_of_attendees INT,
+  modality VARCHAR(100),
+  credits INT
+) 
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `shahk6_CourseManagement`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `courses`
---
-
-CREATE TABLE `courses` (
-  `course_id` varchar(10) NOT NULL,
-  `topic` varchar(255) DEFAULT NULL,
-  `number_of_attendees` int(11) DEFAULT NULL,
-  `modality` varchar(100) DEFAULT NULL,
-  `credits` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`course_id`, `topic`, `number_of_attendees`, `modality`, `credits`) VALUES
+INSERT INTO courses (course_id, topic, number_of_attendees, modality, credits) VALUES
 ('CSIT101', 'Introduction to Computer Science', 30, 'In Person', 3),
 ('CSIT102', 'Fundamentals of Programming', 30, 'Online', 4),
 ('CSIT103', 'Basic Web Development', 35, 'In Person', 3),
@@ -60,18 +27,3 @@ INSERT INTO `courses` (`course_id`, `topic`, `number_of_attendees`, `modality`, 
 ('CSIT118', 'Artificial Intelligence Basics', 30, 'Online', 4),
 ('CSIT119', 'Ethical Hacking and Network Security', 25, 'Online', 4),
 ('CSIT120', 'Big Data and Analytics', 30, 'In Person', 3);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `courses`
---
-ALTER TABLE `courses`
-  ADD PRIMARY KEY (`course_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
