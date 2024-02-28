@@ -1,43 +1,25 @@
-# Course Selection
+# Course Selection System
 
-The Course Management System is a key project for universities and students.
-There are two types of users for this system: Admin and User. 
-The Admin can manage the system, like adding or changing courses,
-and looking at user registrations. Users, including students and faculty, 
-can sign up for courses, see what courses are available, and get up-to-date information.
-The system will use PHP and MySQL for secure and efficient management of courses,
-making it a useful tool for both managing and choosing educational courses
+## Introduction
+Hello! I'm Kashyap, and this repository hosts the Course Selection system project, where I'm contributing towards enhancing its functionality and user interface. My work is primarily focused on the `feature-kashyap` branch, a dedicated space for my contributions to this project.
 
-## Installation
-Pull the files from github, 
+## About the `feature-kashyap` Branch
+The `feature-kashyap` branch is where I make all my contributions to the Course Selection system. It's named after me to indicate that this is my personal workspace for the project. I created this branch to isolate my enhancements and updates, ensuring they can be thoroughly tested and reviewed before merging into the main branch.
 
+## Recent Changes
+In my latest update, I've made a targeted improvement to the course search feature within the `search.html` file:
 
-```bash
-pip install foobar
-```
+- **Enhancement Added**:
+  ```html
+  <option value="course_id">Course ID</option>
+  ```
+  With this addition, users now have the ability to search for courses directly by their Course ID, alongside other existing search criteria. This update aims to streamline the search process, offering a more direct and flexible approach to finding courses.
 
-## Usage
+## Rationale Behind the Change
+The motivation for introducing a "Course ID" search option came from feedback and the recognition of a need for more precise search capabilities within our system. This change is part of my ongoing efforts to refine the user experience and ensure our system meets the diverse needs of its users.
 
-```python
-import foobar
+## Committing to Improvement
+All changes I make, including this recent update, are committed to the `feature-kashyap` branch. I am documenting each update to make sure a transparent and organized development process. This way allows for careful review and testing before any changes are integrated into the main branch. This commit was a small one and have not really changed much as this is just for an assignemnt but I will add more functionalities as we move ahead in the project.
 
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+## Conclusion and Future Work
+This update is just one of many steps towards enhancing the Course Selection system. I am committed to continuously improving the platform, guided by user feedback and the evolving needs of our community.
