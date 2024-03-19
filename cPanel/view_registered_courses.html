@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+  }
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .select-term {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>View Registration Information</h1>
+  
+  <!-- Additional links and buttons can be added here -->
+  
+  <select class="select-term">
+    <option value="fall2020">FALL 2020</option>
+    <!-- Other terms... -->
+  </select>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Details</th>
+        <th>Hours</th>
+        <th>CRN</th>
+        <th>Schedule Type</th>
+        <th>Grade Mode</th>
+        <th>Level</th>
+        <th>Part Of Term</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody id="scheduleData">
+        <tr>
+            <td> Course Title
+                <!-- This is a pretend data box! :D -->
+
+            </td>
+
+            <td> Course Details
+                <!-- This is a pretend data box! :D -->
+
+            </td>
+        </tr>
+
+        <tr>
+            <td> Course Title
+                <!-- This is a pretend data box! :D -->
+
+            </td>
+            
+            <td> Course Details
+                <!-- This is a pretend data box! :D -->
+
+            </td>
+        </tr>
+
+
+      <!-- Data will be loaded here from elsewhere -->
+    </tbody>
+  </table>
+  
+  <div id="totalHours">
+    <!-- Total hours and other info will be loaded here from elsewhere -->
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+FG<!DOCTYPE html>
 <html>
 <head>
   <title>Course Entry Results</title>
