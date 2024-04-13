@@ -1,4 +1,4 @@
-FG<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Course Entry Results</title>
@@ -11,7 +11,7 @@ FG<!DOCTYPE html>
   $number_of_attendees = $_POST['number_of_attendees'];
   $modality = $_POST['modality'];
   $credits = $_POST['credits'];
-  $feedback = $_POST['feedback'];
+  $feedback = $_POST['Description'];
 
   if (!$course_id || !$topic || !$number_of_attendees || !$modality || !$credits) {
      echo "You have not entered all the required details.<br />"
@@ -26,9 +26,9 @@ FG<!DOCTYPE html>
      exit;
   }
 
-  $query = "INSERT INTO courses (course_id, topic, number_of_attendees, modality, credits, feedback) VALUES (?, ?, ?, ?, ?, ?)";
+  $query = "INSERT INTO courses (course_id, topic, number_of_attendees, modality, credits, Description) VALUES (?, ?, ?, ?, ?, ?)";
   $stmt = $db->prepare($query);
-  $stmt->bind_param("ssisis", $course_id, $topic, $number_of_attendees, $modality, $credits, $feedback);
+  $stmt->bind_param("ssisis", $course_id, $topic, $number_of_attendees, $modality, $credits, $Description);
   $stmt->execute();
 
   if ($stmt->affected_rows === 1) {

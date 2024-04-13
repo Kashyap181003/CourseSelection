@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Courses Completed: " . htmlspecialchars($row['courses_completed']) . "<br>";
         echo "Credits Earned: " . htmlspecialchars($row['credits_earned']) . "<br>";
         echo "In person / Online: " . htmlspecialchars($row['demographics']) . "<br>";
-        echo "Feedback: " . htmlspecialchars($row['feedback']) . "<br>";
+        echo "Description: " . htmlspecialchars($row['Description']) . "<br>";
 
         // Query to get the names of the courses the user is registered for
         $course_stmt = $db_course_management->prepare("SELECT c.topic FROM course_registrations cr JOIN courses c ON cr.course_id = c.course_id WHERE cr.username = ?");

@@ -2,21 +2,41 @@
 <html>
 <head>
   <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <h1>Register</h1>
-  <form action="register.php" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="password" name="password"><br>
-    Name: <input type="text" name="name"><br>
-    Address: <input type="text" name="address"><br>
-    Interested Topics: <input type="text" name="interested_topics"><br>
-    Application Description: <input type="text" name="application_description"><br>
-    Courses Completed: <input type="text" name="courses_completed"><br>
-    Credits Earned: <input type="number" name="credits_earned"><br>
-    Demographics: <input type="text" name="demographics"><br>
-    Feedback: <input type="text" name="feedback"><br>
-    <input type="submit" value="Register">
-  </form>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.php" class="navbar-brand">Course Management System</a>
+      <div class="navbar-links">
+        <a href="index.php">Home</a>
+        <a href="login.php">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="register-form pane">
+      <h2>Register</h2>
+      <form action="register.php" method="post" class="login-form">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        Name: <input type="text" name="name"><br>
+        Address: <input type="text" name="address"><br>
+        Interested Topics: <input type="text" name="interested_topics"><br>
+        Application Description: <input type="text" name="application_description"><br>
+        Courses Completed: <input type="text" name="courses_completed"><br>
+        Credits Earned: <input type="number" name="credits_earned"><br>
+        Demographics: <input type="text" name="demographics"><br>
+        Description: <input type="text" name="Description"><br>
+        <input type="submit" value="Register">
+      </form>
+      <p>Already registered? <a href="login.php">Login here</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <?php echo date("Y"); ?> Course Management System. All rights reserved.</p>
+  </footer>
 </body>
 </html>

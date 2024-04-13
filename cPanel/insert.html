@@ -2,8 +2,19 @@
 <html>
 <head>
   <title>Insert New Course</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.php" class="navbar-brand">Course Management System</a>
+      <div class="navbar-links">
+        <a href="index.php">Home</a>
+        <a href="login.php">Login</a>
+      </div>
+    </div>
+  </nav>
+
   <h1>Insert New Course</h1>
   <form action="new_course.php" method="post">
     <table>
@@ -34,12 +45,16 @@
       </tr>
       <tr>
         <td>Feedback</td>
-        <td><textarea name="feedback"></textarea></td>
+        <td><textarea name="Description"></textarea></td>
       </tr>
       <tr>
         <td><input type="submit" value="Insert"></td>
       </tr>
     </table>
   </form>
+
+  <footer>
+    <p>&copy; <?php echo date("Y"); ?> Course Management System. All rights reserved.</p>
+  </footer>
 </body>
 </html>

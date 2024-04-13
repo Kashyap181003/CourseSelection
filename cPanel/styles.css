@@ -1,90 +1,154 @@
-    /* Resetting default margin and padding */
-    body, h1, h2, p, ul, li {
-        margin: 0;
-        padding: 0;
-    }
+/* Resetting default margin and padding */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-size: 14px; /* Adjust the base font size */
+}
 
-    /* Body styling */
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        background-color: #f0f0f0;
-        color: #333;
-    }
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+}
 
-    /* Header styling */
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-    }
+/* Header styling */
+header {
+    background-color: rgb(210, 20, 55);
+    color: #fff;
+    padding: 15px; /* Adjust header padding */
+    text-align: center; /* Center header text */
+}
 
-    header h1 {
-        margin: 0;
-    }
+nav ul {
+    list-style-type: none;
+}
 
-    nav ul {
-        list-style-type: none;
-    }
+nav ul li {
+    display: inline;
+    margin-right: 15px; /* Adjust margin between nav items */
+}
 
-    nav ul li {
-        display: inline;
-        margin-right: 20px;
-    }
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
 
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-    }
+nav ul li a:hover {
+    text-decoration: underline;
+}
 
-    nav ul li a:hover {
-        text-decoration: underline;
-    }
+/* Main content styling */
+main {
+    padding: 15px; /* Adjust main content padding */
+    text-align: center; /* Center main content */
+}
 
-    /* Main content styling */
-    main {
-        padding: 20px;
-    }
+section {
+    margin-bottom: 15px; /* Adjust margin between sections */
+    display: inline-block; /* Make sections inline-block for centering */
+    text-align: left; /* Reset text alignment for section contents */
+}
 
-    section {
-        margin-bottom: 20px;
-    }
+h2 {
+    color: #333;
+    font-size: 18px; /* Adjust h2 font size */
+    margin-bottom: 10px; /* Adjust margin bottom for h2 */
+}
 
-    h2 {
-        color: #333;
-    }
+/* Login form styling */
+.login-form {
+    background-color: #fff;
+    padding: 15px; /* Adjust form padding */
+    border-radius: 5px;
+    width: 280px; /* Adjust form width */
+    margin: 0 auto; /* Center form horizontally */
+}
 
-    /* Login form styling */
-    .login-form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-    }
+.login-form label {
+    display: block;
+    margin-bottom: 8px; /* Adjust margin bottom for labels */
+}
 
-    .login-form label {
-        display: block;
-        margin-bottom: 10px;
-    }
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="number"] {
+    width: calc(100% - 20px); /* Adjust width for input fields */
+    padding: 8px;
+    margin-bottom: 8px; /* Adjust margin bottom for inputs */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    background-color: rgb(210, 20, 55);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
 
-    .login-form input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
+.login-form input[type="submit"]:hover {
+    background-color: #555;
+}
 
-    .login-form input[type="submit"]:hover {
-        background-color: #555;
-    }
+/* CSS for the navigation bar */
+.navbar {
+  background-color: rgb(210, 20, 55);
+  color: #fff;
+  padding: 8px 0; /* Adjust nav bar padding */
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Ensure the navigation bar appears above other content */
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.3em; /* Adjust navbar brand font size */
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px; /* Adjust padding for nav links */
+}
+
+.navbar-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* Footer styling */
+footer {
+  background-color: rgb(210, 20, 55);
+  color: #fff;
+  text-align: center;
+  padding: 8px 0; /* Adjust footer padding */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  font-size: 12px; /* Adjust footer font size */
+}
