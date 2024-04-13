@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login/Register</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        // Function to check for error message in the URL and display it in a popup box
+        function displayErrorMessage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                alert(error); // Show error message in an alert box
+            }
+        }
+    </script>
 </head>
-<body>
-  <header>
-    <h1>Login For Course Registration</h1>
-  </header>
+<body onload="displayErrorMessage()">
+    <nav class="navbar">
+        <!-- Navbar content -->
+    </nav>
 
-  <main>
-    <section>
-      <form action="login.php" method="post" class="login-form">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Login">
-      </form>
-    </section>
+    <main>
+        <div class="login-form">
+            <h2>Login</h2>
+            <form action="login.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Login">
+            </form>
+            <p>Not registered? <a href="register.html">Click Here!</a></p>
+        </div>
+    </main>
 
-    <section>
-      <h1>Register</h1>
-      <form action="register.php" method="post" class="login-form">
-        <label for="reg_username">Username:</label><br>
-        <input type="text" id="reg_username" name="username"><br>
-        <label for="reg_password">Password:</label><br>
-        <input type="password" id="reg_password" name="password"><br>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="address">Address:</label><br>
-        <input type="text" id="address" name="address"><br>
-        <label for="interested_topics">Interested Topics:</label><br>
-        <input type="text" id="interested_topics" name="interested_topics"><br>
-        <label for="courses_completed">Courses Completed:</label><br>
-        <input type="text" id="courses_completed" name="courses_completed"><br>
-        <label for="credits_earned">Credits Earned:</label><br>
-        <input type="number" id="credits_earned" name="credits_earned"><br>
-        <label for="demographics">In person/Online:</label><br>
-        <input type="text" id="demographics" name="demographics"><br>
-        <label for="feedback">Feedback:</label><br>
-        <input type="text" id="feedback" name="feedback"><br><br>
-        <input type="submit" value="Register">
-      </form>
-    </section>
-  </main>
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Course Management System. All rights reserved.</p>
+    </footer>
 </body>
 </html>

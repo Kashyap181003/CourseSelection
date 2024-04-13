@@ -2,51 +2,83 @@
 <html>
 <head>
   <title>Search Results</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<h1>Search Results</h1>
-<?php
-  $searchtype = $_POST['searchtype'];
-  $searchterm = trim($_POST['searchterm']);
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-brand">Course Management System</a>
+      <div class="navbar-links">
+        <a href="index.php">Home</a>
+        <a href="courses.php">Courses</a>
+        <a href="profile.php">Profile</a>
+        <a href="logout.php">Logout</a>
+      </div>
+    </div>
+  </nav>
 
-  if (!$searchtype || !$searchterm) {
-     echo 'You have not entered search details. Please go back and try again.';
-     exit;
-  }
+  <header>
+    <h1>Search Results</h1>
+  </header>
 
-  @ $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
+  <main>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Course ID</th>
+          <th>Topic</th>
+          <th>Number of Attendees</th>
+          <th>Modality</th>
+          <th>Credits</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          $searchtype = $_POST['searchtype'];
+          $searchterm = trim($_POST['searchterm']);
 
-  if (mysqli_connect_errno()) {
-     echo 'Error: Could not connect to database. Please try again later.';
-     exit;
-  }
+          if (!$searchtype || !$searchterm) {
+             echo '<tr><td colspan="6">You have not entered search details. Please go back and try again.</td></tr>';
+             exit;
+          }
 
-  $query = "SELECT * FROM courses WHERE ".$searchtype." LIKE '%".$searchterm."%'";
-  $result = $db->query($query);
+          @ $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
 
-  $num_results = $result->num_rows;
+          if (mysqli_connect_errno()) {
+             echo '<tr><td colspan="6">Error: Could not connect to database. Please try again later.</td></tr>';
+             exit;
+          }
 
-  echo "<p>Number of courses found: ".$num_results."</p>";
+          $query = "SELECT * FROM courses WHERE ".$searchtype." LIKE '%".$searchterm."%'";
+          $result = $db->query($query);
 
-  for ($i = 0; $i < $num_results; $i++) {
-     $row = $result->fetch_assoc();
-     echo "<p><strong>".($i + 1).". Course ID: ";
-     echo htmlspecialchars($row['course_id']);
-     echo "</strong><br />Topic: ";
-     echo htmlspecialchars($row['topic']);
-     echo "<br />Number of Attendees: ";
-     echo htmlspecialchars($row['number_of_attendees']);
-     echo "<br />Modality: ";
-     echo htmlspecialchars($row['modality']);
-     echo "<br />Credits: ";
-     echo htmlspecialchars($row['credits']);
-     echo "<br />Feedback: ";
-     echo htmlspecialchars($row['feedback']);
-     echo "</p>";
-  }
+          $num_results = $result->num_rows;
 
-  $result->free();
-  $db->close();
-?>
+          if ($num_results === 0) {
+            echo '<tr><td colspan="6">No courses found matching the search criteria.</td></tr>';
+          } else {
+            while ($row = $result->fetch_assoc()) {
+              echo '<tr>';
+              echo '<td>' . htmlspecialchars($row['course_id']) . '</td>';
+              echo '<td>' . htmlspecialchars($row['topic']) . '</td>';
+              echo '<td>' . htmlspecialchars($row['number_of_attendees']) . '</td>';
+              echo '<td>' . htmlspecialchars($row['modality']) . '</td>';
+              echo '<td>' . htmlspecialchars($row['credits']) . '</td>';
+              echo '<td>' . htmlspecialchars($row['Description']) . '</td>';
+              echo '</tr>';
+            }
+          }
+
+          $result->free();
+          $db->close();
+        ?>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; <?php echo date("Y"); ?> Course Management System. All rights reserved.</p>
+  </footer>
 </body>
 </html>
