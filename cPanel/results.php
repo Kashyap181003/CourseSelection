@@ -8,6 +8,17 @@
   <nav class="navbar">
     <div class="navbar-container">
       <a href="#" class="navbar-brand">Course Management System</a>
+      <!-- Move "Results" and add search form -->
+      <form action="results.php" method="POST" class="search-form">
+        <input type="text" name="searchterm" placeholder="Enter search term" value="<?php echo htmlspecialchars($searchterm ?? ''); ?>">
+        <select name="searchtype">
+          <option value="course_id">Course ID</option>
+          <option value="topic">Topic</option>
+          <option value="modality">Modality</option>
+        </select>
+        <input type="submit" value="Search">
+      </form>
+      <!-- End of search form -->
       <div class="navbar-links">
         <a href="index.php">Home</a>
         <a href="courses.php">Courses</a>
@@ -17,10 +28,7 @@
     </div>
   </nav>
 
-  <header>
-    <h1>Search Results</h1>
-  </header>
-
+  <!-- Remove header and move "Results" to navigation bar -->
   <main>
     <table class="results-table">
       <thead>
@@ -30,33 +38,30 @@
           <th>Number of Attendees</th>
           <th>Modality</th>
           <th>Credits</th>
-          <th>Feedback</th>
         </tr>
       </thead>
       <tbody>
         <?php
-          $searchtype = $_POST['searchtype'];
-          $searchterm = trim($_POST['searchterm']);
+          $searchtype = $_POST['searchtype'] ?? '';
+          $searchterm = trim($_POST['searchterm'] ?? '');
 
-          if (!$searchtype || !$searchterm) {
-             echo '<tr><td colspan="6">You have not entered search details. Please go back and try again.</td></tr>';
+          if (empty($searchtype) || empty($searchterm)) {
+             echo '<tr><td colspan="5">You have not entered search details. Please go back and try again.</td></tr>';
              exit;
           }
 
-          @ $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
+          $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
-          if (mysqli_connect_errno()) {
-             echo '<tr><td colspan="6">Error: Could not connect to database. Please try again later.</td></tr>';
+          if ($db->connect_errno) {
+             echo '<tr><td colspan="5">Error: Could not connect to database. Please try again later.</td></tr>';
              exit;
           }
 
-          $query = "SELECT * FROM courses WHERE ".$searchtype." LIKE '%".$searchterm."%'";
+          $query = "SELECT course_id, topic, number_of_attendees, modality, credits FROM courses WHERE $searchtype LIKE '%$searchterm%'";
           $result = $db->query($query);
 
-          $num_results = $result->num_rows;
-
-          if ($num_results === 0) {
-            echo '<tr><td colspan="6">No courses found matching the search criteria.</td></tr>';
+          if (!$result) {
+            echo '<tr><td colspan="5">No courses found matching the search criteria.</td></tr>';
           } else {
             while ($row = $result->fetch_assoc()) {
               echo '<tr>';
@@ -65,12 +70,11 @@
               echo '<td>' . htmlspecialchars($row['number_of_attendees']) . '</td>';
               echo '<td>' . htmlspecialchars($row['modality']) . '</td>';
               echo '<td>' . htmlspecialchars($row['credits']) . '</td>';
-              echo '<td>' . htmlspecialchars($row['Description']) . '</td>';
               echo '</tr>';
             }
+            $result->free();
           }
 
-          $result->free();
           $db->close();
         ?>
       </tbody>

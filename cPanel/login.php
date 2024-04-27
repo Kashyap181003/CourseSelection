@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password']; 
 
-    $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_UserInfo');
+    $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);

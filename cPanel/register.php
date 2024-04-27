@@ -1,4 +1,8 @@
 <?php
+// Enable error reporting for debugging purposes
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -11,23 +15,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $demographics = $_POST['demographics'];
     $feedback = $_POST['Description'];
 
-    $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_UserInfo');
+    $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
     }
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Prepare the SQL statement and check for errors
+    $stmt = $db->prepare("INSERT INTO users (username, password, name, address, interested_topics, application_description, courses_completed, credits_earned, demographics, feedback) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt = $db->prepare("INSERT INTO users (username, password, name, address, interested_topics, application_description, courses_completed, credits_earned, demographics, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    
     if (!$stmt) {
         die("Error in preparing statement: " . $db->error);
     }
 
-    $stmt->bind_param("sssssssiis", $username, $hashed_password, $name, $address, $interested_topics, $application_description, $courses_completed, $credits_earned, $demographics, $feedback);
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+    // Bind parameters to the prepared statement
+    $bind_result = $stmt->bind_param("ssssssssis", $username, $hashed_password, $name, $address, $interested_topics, $application_description, $courses_completed, $credits_earned, $demographics, $feedback);
+
+    if (!$bind_result) {
+        die("Error in binding parameters: " . $stmt->error);
+    }
+
+    // Execute the prepared statement
     if (!$stmt->execute()) {
         die("Error in executing statement: " . $stmt->error);
     }
@@ -38,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $stmt->error;
     }
 
+    // Close the statement and database connection
     $stmt->close();
     $db->close();
 }

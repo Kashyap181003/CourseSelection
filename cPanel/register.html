@@ -7,10 +7,10 @@
 <body>
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.php" class="navbar-brand">Course Management System</a>
+      <a href="login.html" class="navbar-brand">Course Management System</a>
       <div class="navbar-links">
-        <a href="index.php">Home</a>
-        <a href="login.php">Login</a>
+        <a href="login.html">Home</a>
+        <a href="login.html">Login</a>
       </div>
     </div>
   </nav>
@@ -19,16 +19,26 @@
     <section class="register-form pane">
       <h2>Register</h2>
       <form action="register.php" method="post" class="login-form">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        Name: <input type="text" name="name"><br>
-        Address: <input type="text" name="address"><br>
-        Interested Topics: <input type="text" name="interested_topics"><br>
-        Application Description: <input type="text" name="application_description"><br>
-        Courses Completed: <input type="text" name="courses_completed"><br>
-        Credits Earned: <input type="number" name="credits_earned"><br>
-        Demographics: <input type="text" name="demographics"><br>
-        Description: <input type="text" name="Description"><br>
+        <div class="form-group">
+          <input type="text" name="username" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Name">
+          <input type="text" name="address" placeholder="Address">
+        </div>
+        <div class="form-group">
+          <input type="text" name="interested_topics" placeholder="Interested Topics">
+          <input type="text" name="application_description" placeholder="Application Description">
+        </div>
+        <div class="form-group">
+          <input type="text" name="courses_completed" placeholder="Courses Completed">
+          <input type="number" name="credits_earned" placeholder="Credits Earned">
+        </div>
+        <div class="form-group">
+          <input type="text" name="demographics" placeholder="Demographics">
+          <input type="text" name="description" placeholder="Description">
+        </div>
         <input type="submit" value="Register">
       </form>
       <p>Already registered? <a href="login.php">Login here</a></p>
