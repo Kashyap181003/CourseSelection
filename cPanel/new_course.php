@@ -19,7 +19,7 @@
      exit;
   }
 
-  $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
+  $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
   if ($db->connect_errno) {
      echo "Error: Could not connect to database. Please try again later.";

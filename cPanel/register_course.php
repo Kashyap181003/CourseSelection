@@ -8,7 +8,7 @@
   $course_id = $_POST['course_id'];
   $username = $_SESSION['username'];
 
-  $db = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
+  $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
   if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
