@@ -5,31 +5,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password']; 
 
-    $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
+    // Include database connection or initialization
+    include 'db_connection.php';
 
-    if ($db->connect_error) {
-        die("Connection failed: " . $db->connect_error);
-    }
-
-    $stmt = $db->prepare("SELECT password, role FROM users WHERE username = ?");
+    $stmt = $db->prepare("SELECT id, password, role, name FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($hashed_password, $role);
+    $stmt->bind_result($id, $hashed_password, $role, $name);
 
     if ($stmt->num_rows == 1) {
         $stmt->fetch();
 
         // Verify the hashed password
         if (password_verify($password, $hashed_password)) {
+            $_SESSION['id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $role;
+            $_SESSION['name'] = $name; // Fetch and store the user's name
 
             if ($role === 'admin') {
-                header("Location: admin_dashboard.php"); // Redirect to the admin dashboard
+                header("Location: admin_dashboard.php?username=" . urlencode($username)); // Redirect to the admin dashboard
                 exit;
             } else {
-                header("Location: user_dashboard.php"); // Redirect to the user dashboard
+                header("Location: user_dashboard.php?username=" . urlencode($username)); // Redirect to the user dashboard
                 exit;
             }
         } else {
