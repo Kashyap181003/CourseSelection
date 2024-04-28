@@ -15,6 +15,7 @@ body {
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
     min-height: 100vh; /* Ensure full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Header styling */
@@ -101,56 +102,59 @@ h2 {
 
 /* CSS for the navigation bar */
 .navbar {
-  background-color: rgb(210, 20, 55);
-  color: #fff;
-  padding: 8px 0; /* Adjust nav bar padding */
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000; /* Ensure the navigation bar appears above other content */
+    background-color: rgb(210, 20, 55);
+    color: #fff;
+    padding: 10px 0; /* Adjust nav bar padding */
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the navigation bar appears above other content */
 }
 
 .navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-brand {
-  font-size: 1.3em; /* Adjust navbar brand font size */
-  text-decoration: none;
-  color: #fff;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: #fff;
+    margin-right: 60px; /* Adjust left margin to move content left */
+    padding: 10px; /* Optional: Maintain padding for aesthetics */
 }
 
+
 .navbar-links {
-  display: flex;
+    display: flex;
 }
 
 .navbar-links a {
-  color: #fff;
-  text-decoration: none;
-  padding: 5px 10px; /* Adjust padding for nav links */
+    color: #fff;
+    text-decoration: none;
+    padding: 0px 12px; /* Adjust padding for nav links */
 }
 
 .navbar-links a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
 }
 
 /* Footer styling */
 footer {
-  background-color: rgb(210, 20, 55);
-  color: #fff;
-  text-align: center;
-  padding: 8px 0; /* Adjust footer padding */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 1000;
-  font-size: 12px; /* Adjust footer font size */
+    background-color: rgb(210, 20, 55);
+    color: #fff;
+    text-align: center;
+    padding: 8px 0; /* Adjust footer padding */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: 12px; /* Adjust footer font size */
 }
 
 /* Additional styles for form grouping */
@@ -171,14 +175,6 @@ footer {
     border-radius: 3px;
 }
 
-/* Additional style for wider screens */
-@media (min-width: 768px) {
-    .form-group input[type="text"],
-    .form-group input[type="password"],
-    .form-group input[type="number"] {
-        width: calc(45% - 10px); /* Adjust width for input fields within form groups for wider screens */
-    }
-}
 
 /* Table styling */
 .results-table {
@@ -204,13 +200,20 @@ footer {
     background-color: #f2f2f2;
 }
 
+.table-container {
+    max-height: 700px; /* Adjust the height as per your requirement */
+    overflow-y: auto;
+}
+
 /* Custom styling for search bar */
 .search-form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px; /* Adjust margin bottom for search bar */
+    padding: 10px; /* Increase padding for more space around the search bar */
+    margin-bottom: 0px; /* Adjust margin bottom to move it down */
 }
+
 
 .search-form .search-box {
     flex-grow: 1; /* Grow to fill available space */
@@ -218,29 +221,33 @@ footer {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
     border-radius: 30px; /* Rounded border */
-    padding: 0 10px; /* Adjust padding */
+    margin-right: 20px;
+    padding: 10px; /* Adjust padding */
 }
 
 .search-form input[type="text"] {
-    padding: 8px;
-    border: none;
+    padding: 10px; /* Increase padding for more space inside the search box */
+    border: 1px solid black;
+    border-radius: 20px;
     outline: none;
-    background-color: transparent; /* Transparent background */
+    background-color: white;
     color: #333;
     font-size: 16px;
-    width: 100%; /* Fill available space */
-}
+    width: 300px; /* Adjust width as needed */
+    margin-right: 5px; /* Adjust left margin to move it to the left */
+}   
 
 .search-form select {
     padding: 8px;
-    border: none;
-    background-color: transparent; /* Transparent background */
+    border: 1px solid black; /* Add a thin black outline */
+    border-radius: 20px; /* Make it more cylindrical */
+    background-color: white; /* Transparent background */
     color: #333;
     font-size: 16px;
 }
 
 .search-form input[type="submit"] {
-    padding: 8px 20px; /* Adjust padding for submit button */
+    padding: 8px 10px; /* Adjust padding for submit button */
     border: none;
     border-radius: 30px; /* Long capped cylinder effect for button */
     background-color: rgb(210, 20, 55);
@@ -287,4 +294,23 @@ footer {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.nav-input-field {
+    width: 50px; /* Adjust width for input fields */
+    padding: 2px;
+    margin-bottom: 4px; /* Adjust margin bottom for inputs */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    color: #333;
+    font-size: 16px;
+    outline: none;
+}
+
+.title-above-content {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: -5px; /* Add some space below the title */
+    color: #333; /* Set the text color */
 }

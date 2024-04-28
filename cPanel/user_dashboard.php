@@ -1,3 +1,22 @@
+<?php
+// Include the database connection file
+include 'db_connection.php';
+
+// Include the encryption functions
+include 'encryption_functions.php';
+
+// Include the encryption key (replace "encryption_key.php" with your actual file path)
+include 'encryption_key.php';
+
+// Start the session
+session_start();
+
+// Check if the username is passed as a URL parameter
+if (isset($_GET['username'])) {
+    $_SESSION['username'] = $_GET['username'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,52 +24,16 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="#" class="navbar-brand">Course Management System</a>
-      <!-- Move "Results" and add search form -->
-      <form action="results.php" method="POST" class="search-form">
-        <input type="text" name="searchterm" placeholder="Enter search term" value="<?php echo htmlspecialchars($searchterm ?? ''); ?>">
-        <select name="searchtype">
-          <option value="course_id">Course ID</option>
-          <option value="topic">Topic</option>
-          <option value="modality">Modality</option>
-        </select>
-        <input type="submit" value="Search">
-      </form>
-      <!-- End of search form -->
-      <div class="navbar-links">
-        <a href="index.php">Home</a>
-        <a href="courses.php">Courses</a>
-        <a href="profile.php">Profile</a>
-        <a href="logout.php">Logout</a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Register Search Bar as Title -->
-  <h2 class="register-search-title">Course Registration Search</h2>
-  <div class="header">
-    <div class="search-boxes">
-      <!-- Course Registration -->
-      <form action="register_course.php" method="post" class="search-form">
-        Course ID: <input type="text" name="course_id"><br>
-        <input type="submit" value="Register">
-      </form>
-    </div>
-  </div>
-
+<main class="dashboard-background">
   <?php
-  $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
-
-  if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-  }
+  // Output the username in the navbar
+  echo "<div class='navbar'>Welcome, ".$_SESSION['username']."</div>";
 
   $query = "SELECT * FROM courses";
   $result = $db->query($query);
 
-  echo "<h2>Available Courses:</h2>";
+  echo "<h2 class='title-above-content'>Available Courses:</h2>";
   echo "<table class='results-table'>";
   echo "<thead><tr><th>Course ID</th><th>Topic</th><th>Number of Attendees</th><th>Modality</th><th>Credits</th></tr></thead>";
   echo "<tbody>";
@@ -68,5 +51,15 @@
 
   $db->close();
   ?>
+</main>
+
+<footer>
+  &copy; <?php echo date("Y"); ?> Course Management System
+</footer>
+
+<?php
+// Include the navbar.php file
+include 'navbar.php';
+?>
 </body>
 </html>

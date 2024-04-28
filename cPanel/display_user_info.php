@@ -13,9 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_identifier = $_POST['user_identifier'];
 
     // Create database connections
-    $db_user_info = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_UserInfo');
-    $db_course_management = new mysqli('localhost', 'shahk6', 'Montclair_18', 'shahk6_CourseManagement');
-
+      $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
     // Check for database connection errors
     if ($db_user_info->connect_error || $db_course_management->connect_error) {
         die("Connection failed: " . $db_user_info->connect_error . $db_course_management->connect_error);
