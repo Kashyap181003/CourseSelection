@@ -48,7 +48,6 @@ $db->close();
       <span>Welcome, <?php echo $userName; ?></span> <!-- Display the user's name -->
       <a href="<?php echo $homeLink; ?>">Home</a>
       <a href="<?php echo $courseLink; ?>">Courses</a>
-      <a href="profile.php?userid=<?php echo urlencode($encryptedUserId); ?>">Profile</a>
       <a href="logout.php">Logout</a>
     </div>
   </div>

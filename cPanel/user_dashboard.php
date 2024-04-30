@@ -1,22 +1,23 @@
 <?php
-// Include the database connection file
-include 'db_connection.php';
-
-// Include the encryption functions
-include 'encryption_functions.php';
-
-// Include the encryption key (replace "encryption_key.php" with your actual file path)
-include 'encryption_key.php';
-
-// Start the session
+// Start the session at the very beginning
 session_start();
 
-// Check if the username is passed as a URL parameter
+// Include the database connection file
+include 'db_connection.php';  // Make sure this file correctly assigns the $db variable
+
+// Include the encryption functions and keys
+include 'encryption_functions.php';
+include 'encryption_key.php';
+
+// Check if the username is passed as a URL parameter and set it to session
 if (isset($_GET['username'])) {
     $_SESSION['username'] = $_GET['username'];
 }
-?>
 
+// Check if session username exists
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,32 +29,50 @@ if (isset($_GET['username'])) {
 <main class="dashboard-background">
     <?php
     // Output the username in the navbar
-    echo "<div class='navbar'>Welcome, ".$_SESSION['username']."</div>";
+    echo "<div class='navbar'>Welcome, " . htmlspecialchars($username) . "</div>";
 
-    $query = "SELECT * FROM courses";
-    $result = $db->query($query);
+    // Ensure $db is defined and connected
+    if ($db) {
+        $query = "SELECT * FROM courses";
+        $result = $db->query($query);
+    
+        echo "<h2 class='title-above-content'>Available Courses:</h2>";
+        echo "<div class='table-container'>";
+        echo "<form method='POST' action='register_course.php'>";
+        echo "<table class='results-table'>";
+        echo "<thead><tr><th>Course ID</th><th>Topic</th><th>Number of Attendees</th><th>Modality</th><th>Credits</th><th>Register</th><th>Unregister</th></tr></thead>";
+        echo "<tbody>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['course_id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['topic']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['number_of_attendees']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['modality']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['credits']) . "</td>";
+            echo "<td><button type='submit' name='register' value='" . $row['course_id'] . "'>Register</button></td>";
+            echo "<td><button type='submit' name='unregister' value='" . $row['course_id'] . "'>Unregister</button></td>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";
+        echo "</form>";
+        echo "</div>"; // Close the table container
 
-    echo "<h2 class='title-above-content'>Available Courses:</h2>";
-    echo "<div class='table-container'>"; // Updated table container
-    echo "<table class='results-table'>";
-    echo "<thead><tr><th>Course ID</th><th>Topic</th><th>Number of Attendees</th><th>Modality</th><th>Credits</th></tr></thead>";
-    echo "<tbody>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['course_id'] . "</td>";
-        echo "<td>" . $row['topic'] . "</td>";
-        echo "<td>" . $row['number_of_attendees'] . "</td>";
-        echo "<td>" . $row['modality'] . "</td>";
-        echo "<td>" . $row['credits'] . "</td>";
-        echo "</tr>";
+        $db->close();
+    } else {
+        echo "Database connection error. Please check your settings.";
     }
-    echo "</tbody>";
-    echo "</table>";
-    echo "</div>"; // Close the table container
-
-    $db->close();
     ?>
 </main>
+<script>
+window.onload = function() {
+    <?php if (isset($_SESSION['message'])) { ?>
+        alert("<?php echo $_SESSION['message']; ?>");
+        <?php unset($_SESSION['message']); ?>
+    <?php } ?>
+};
+</script>
+
 
 <footer>
     &copy; <?php echo date("Y"); ?> Course Management System
