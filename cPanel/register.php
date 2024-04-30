@@ -43,7 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->affected_rows === 1) {
-        echo "User registered successfully.";
+        // Close the statement and database connection
+        $stmt->close();
+        $db->close();
+
+        // Redirect to login.html with success message
+        header("Location: login.html?message=User%20registered%20successfully");
+        exit;
     } else {
         echo "Error: " . $stmt->error;
     }
