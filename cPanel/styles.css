@@ -163,16 +163,18 @@ footer {
     flex-wrap: wrap; /* Allow flex items to wrap */
     justify-content: space-between;
     margin-bottom: 10px; /* Adjust margin between form groups */
+    text-align: center;
 }
 
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="number"] {
-    width: calc(50% - 10px); /* Adjust width for input fields within form groups */
+    width: 260px; /* Adjust width for input fields within form groups */
     padding: 8px;
     margin-bottom: 8px; /* Adjust margin bottom for inputs */
     border: 1px solid #ccc;
     border-radius: 3px;
+    text-align: center;
 }
 
 
@@ -314,3 +316,45 @@ footer {
     margin-bottom: -5px; /* Add some space below the title */
     color: #333; /* Set the text color */
 }
+
+.login-title{
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.password-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .password-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+
+  .password-tooltip:hover .tooltip-text,
+  .password-tooltip:focus .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
