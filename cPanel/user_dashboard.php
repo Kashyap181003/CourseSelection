@@ -20,41 +20,43 @@ if (isset($_GET['username'])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
 <main class="dashboard-background">
-  <?php
-  // Output the username in the navbar
-  echo "<div class='navbar'>Welcome, ".$_SESSION['username']."</div>";
+    <?php
+    // Output the username in the navbar
+    echo "<div class='navbar'>Welcome, ".$_SESSION['username']."</div>";
 
-  $query = "SELECT * FROM courses";
-  $result = $db->query($query);
+    $query = "SELECT * FROM courses";
+    $result = $db->query($query);
 
-  echo "<h2 class='title-above-content'>Available Courses:</h2>";
-  echo "<table class='results-table'>";
-  echo "<thead><tr><th>Course ID</th><th>Topic</th><th>Number of Attendees</th><th>Modality</th><th>Credits</th></tr></thead>";
-  echo "<tbody>";
-  while ($row = $result->fetch_assoc()) {
-    echo "<tr>";
-    echo "<td>" . $row['course_id'] . "</td>";
-    echo "<td>" . $row['topic'] . "</td>";
-    echo "<td>" . $row['number_of_attendees'] . "</td>";
-    echo "<td>" . $row['modality'] . "</td>";
-    echo "<td>" . $row['credits'] . "</td>";
-    echo "</tr>";
-  }
-  echo "</tbody>";
-  echo "</table>";
+    echo "<h2 class='title-above-content'>Available Courses:</h2>";
+    echo "<div class='table-container'>"; // Updated table container
+    echo "<table class='results-table'>";
+    echo "<thead><tr><th>Course ID</th><th>Topic</th><th>Number of Attendees</th><th>Modality</th><th>Credits</th></tr></thead>";
+    echo "<tbody>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row['course_id'] . "</td>";
+        echo "<td>" . $row['topic'] . "</td>";
+        echo "<td>" . $row['number_of_attendees'] . "</td>";
+        echo "<td>" . $row['modality'] . "</td>";
+        echo "<td>" . $row['credits'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>"; // Close the table container
 
-  $db->close();
-  ?>
+    $db->close();
+    ?>
 </main>
 
 <footer>
-  &copy; <?php echo date("Y"); ?> Course Management System
+    &copy; <?php echo date("Y"); ?> Course Management System
 </footer>
 
 <?php

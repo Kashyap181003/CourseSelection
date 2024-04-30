@@ -9,11 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $interested_topics = $_POST['interested_topics'];
-    $application_description = $_POST['application_description'];
-    $courses_completed = $_POST['courses_completed'];
     $credits_earned = $_POST['credits_earned'];
     $demographics = $_POST['demographics'];
-    $feedback = $_POST['Description'];
+    $email = $_POST['email'];
+    $phone_number = $_POST['phone_number'];
 
     $db = new mysqli('localhost', 'root', '', 'shahk6_coursemanagement');
 
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare the SQL statement and check for errors
-    $stmt = $db->prepare("INSERT INTO users (username, password, name, address, interested_topics, application_description, courses_completed, credits_earned, demographics, feedback) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO users (username, password, name, address, interested_topics, credits_earned, demographics, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         die("Error in preparing statement: " . $db->error);
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Bind parameters to the prepared statement
-    $bind_result = $stmt->bind_param("ssssssssis", $username, $hashed_password, $name, $address, $interested_topics, $application_description, $courses_completed, $credits_earned, $demographics, $feedback);
+    $bind_result = $stmt->bind_param("sssssisss", $username, $hashed_password, $name, $address, $interested_topics, $credits_earned, $demographics, $email, $phone_number);
 
     if (!$bind_result) {
         die("Error in binding parameters: " . $stmt->error);

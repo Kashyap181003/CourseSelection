@@ -3,6 +3,34 @@
 <head>
   <title>Register</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    .password-requirements {
+      font-size: smaller;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var password = document.forms["registrationForm"]["password"].value;
+      var confirmPassword = document.forms["registrationForm"]["confirm_password"].value;
+
+      // Password must be at least 8 characters long, contain a special character, a capital letter, and a number
+      var passwordPattern = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match. Please re-enter your password.");
+        return false;
+      }
+
+      if (!passwordPattern.test(password)) {
+        alert("Password must meet the following requirements:\n" +
+          "• At least 8 characters long\n" +
+          "• Contains a special character\n" +
+          "• Contains a capital letter\n" +
+          "• Contains a number");
+        return false;
+      }
+    }
+  </script>
 </head>
 <body>
   <nav class="navbar">
@@ -16,32 +44,34 @@
   </nav>
 
   <main>
+    <h2 class="login-title">Register</h2>
     <section class="register-form pane">
-      <h2>Register</h2>
-      <form action="register.php" method="post" class="login-form">
+      <form name="registrationForm" action="register.php" method="post" class="login-form" onsubmit="return validateForm()">
         <div class="form-group">
-          <input type="text" name="username" placeholder="Username">
-          <input type="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <input type="text" name="name" placeholder="Name">
-          <input type="text" name="address" placeholder="Address">
-        </div>
-        <div class="form-group">
+          <input type="text" name="username" placeholder="Username *" required>
+          <div class="password-tooltip">
+            <input type="password" name="password" placeholder="Password *" required>
+            <span class="tooltip-text">
+              Password must meet the following requirements:<br>
+              At least 8 characters long<br>
+              Contains a special character<br>
+              Contains a capital letter<br>
+              Contains a number
+            </span>
+          </div>
+          <input type="password" name="confirm_password" placeholder="Confirm Password *" required>
+          <input type="text" name="email" placeholder="Email Address *" required>
+          <input type="text" name="phone_number" placeholder="Phone Number *" required>
+          <input type="text" name="name" placeholder="Full Name *" required>
+          <input type="text" name="address" placeholder="Address *" required>
           <input type="text" name="interested_topics" placeholder="Interested Topics">
-          <input type="text" name="application_description" placeholder="Application Description">
-        </div>
-        <div class="form-group">
-          <input type="text" name="courses_completed" placeholder="Courses Completed">
-          <input type="number" name="credits_earned" placeholder="Credits Earned">
-        </div>
-        <div class="form-group">
-          <input type="text" name="demographics" placeholder="Demographics">
-          <input type="text" name="description" placeholder="Description">
+          <input type="number" name="credits_earned" placeholder="Credits Earned *" required>
+          <input type="text" name="demographics" placeholder="Ethnicity *" required>
         </div>
         <input type="submit" value="Register">
+        
+      <p style="text-align: center;">Already registered? <a href="login.html">Login here</a></p>
       </form>
-      <p>Already registered? <a href="login.php">Login here</a></p>
     </section>
   </main>
 
